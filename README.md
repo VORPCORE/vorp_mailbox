@@ -17,3 +17,5 @@
 # ***License*** 
 * this plugin is protected by its license please read it.
 
+# Credits
+[Emolitt](https://github.com/RomainJolidon) original autor
