@@ -195,7 +195,7 @@ function setMessages(messages) {
 
 function setUsers(users) {
 	//load users into select
-	createUserSelectOption('Choisis un destinataire', 0);
+	createUserSelectOption('Choose the Destination', 0);
 	window.localStorage.setItem('mailbox_users', JSON.stringify(users));
 	users.forEach((user, index) => {
 		createUserSelectOption(`${user.firstname} ${user.lastname}`, index + 1);
@@ -369,5 +369,8 @@ window.addEventListener('message', (event) => {
 
 	initInteractions();
 });
+
+
+
 
 
