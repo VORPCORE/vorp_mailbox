@@ -177,11 +177,14 @@ AddEventHandler("mailbox:updateMessages", function(data)
         print("[mailbox:updateMessages] source is null")
     end
 
-    local toDelete = data.toDelete
     local toMarkAsread = data.toMarkAsread
 
-    if toDelete ~= nil and #toDelete > 0 then
-        exports.ghmattimysql:execute( "DELETE FROM mailbox_mails WHERE id IN (?);", toDelete)
+    if data.toDelete ~= nil and #data.toDelete > 0 then
+        local toDelete = ""
+        for key, value in pairs(data.toDelete) do
+            toDelete = toDelete .. tostring(value) .. (key < #data.toDelete and ', ' or '')
+        end
+        exports.ghmattimysql:execute("DELETE FROM mailbox_mails WHERE id IN (" .. toDelete .. ");")
     end
     if toMarkAsread ~= nil and #toMarkAsread > 0 then
         exports.ghmattimysql:execute( "UPDATE mailbox_mails SET opened = true WHERE id IN (?);", toMarkAsread)
