@@ -1,0 +1,19 @@
+Locales['nl'] = {
+    ["TipOnMessageReceived"]= "Hey ! Je kreeg net een bericht van $1",
+    ["TipOnBroadcastReceived"]= "Nieuwe telegram:\n$1\nBericht betaald door $2",
+    ["TipOnMessageSent"]= "Telegram verstuurd",
+    ["TipOnBroadcastSent"]= "Telegram verstuurd",
+    ["TipOnTooRecentMessageSent"]= "Je moet minstens $1 sec wachten voor je een nieuw bericht kan versturen", -- don't touch $n, it is replaced with custom values on runtime
+    ["TipOnInsufficientMoneyForMessage"]= "Onvoldoende geld. Je hebt $1$ nodig", -- don't touch $n, it is replaced with custom values on runtime
+    ["TipOnInsufficientMoneyForBroadcast"]= "Onvoldoende geld. Je hebt $1$ nodig", -- don't touch $n, it is replaced with custom values on runtime
+    ["TextNearMailboxLocation"]= "Druk op $1 om je e-mails te bekijken of $2 om iedereen een telegram te sturen", -- don't touch $, it is replaced with curent used key on runtime
+    ["UICloseButton"]= "Sluiten",
+    ["UIWriteButton"]= "Schrijf",
+    ["UIDeleteButton"]= "Verwijder",
+    ["UIAnswerButton"]= "Beantwoord",
+    ["UIAbortButton"]= "Annuleer",
+    ["UISendButton"]= "Verstuur",
+    ["UINamePrefix"]= "Van",
+    ["UITitle"]= "Mailbox",
+    ["UINoMessageReceived"]= "Geen ontvangen berichten"
+}
