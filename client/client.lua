@@ -200,7 +200,7 @@ function SetBlipAtPos(x, y, z)
     local blip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, x, y, z)
 
     Citizen.InvokeNative(0x74F74D3207ED525C, blip, bliphash, 1) -- See blips here: https://cloudy-docs.bubbleapps.io/rdr2_blips
-    Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Mail Box")
+    Citizen.InvokeNative(0x9CB1A1623062F402, blip, Config.BlipName)
 end
 
 function DisplayTip(message, time)
