@@ -1,21 +1,26 @@
-# ***vorp_mailbox***
+# **vorp_mailbox**
+Telegram script for VORP Core. With this script you can send a mail to a specific player or you can send a broadcast to all players.
 
+## **Installation**
+- Add `ensure vorp_mailbox` to your `server.cfg`/ `Resources.cfg` file
+- Run the `SQL` provided for database
 
-# ***FEATURES***
-- choose from a list of players to sed a telegram
-- prices for telegrams
-- send broadcast messages for a price to everyone
-- hmyl
-<img width="633" alt="image" src="https://user-images.githubusercontent.com/87246847/177016773-11689a71-1853-45a8-b3a2-cfe813c3bd1b.png">
+## **Features**
+- Choose from a list of players to send a telegram
+- Prices for telegrams
+- Send broadcast messages for a price to everyone
+- HTML
 
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/87246847/177016773-11689a71-1853-45a8-b3a2-cfe813c3bd1b.png">
 
-# ***installation***
-* `ensure vorp_mailbox` in your resources called `Resources.cfg` 
-* run the `SQL` provided for database
-* enjoy 
+## **Dependencies**
+- [VORP Core](https://github.com/VORPCORE/vorp_core-lua)
 
-# ***License*** 
-* this plugin is protected by its license please read it.
+## **License** 
+- This script is protected by its license please Read it.
 
-# Credits
+## Credits
 [Emolitt](https://github.com/RomainJolidon) original autor
+
+## Support
+[VORP Core Discord](https://discord.gg/JjNYMnDKMf)
