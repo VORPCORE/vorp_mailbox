@@ -165,10 +165,16 @@ AddEventHandler("mailbox:getUsers", function()
     local _source = source
     local refreshRate = Config["TimeBetweenUsersRefresh"]
 
-    if refreshRate > 0 and lastUsersRefresh + (1000 * refreshRate) < GetGameTimer() then
-        RefreshUsersCache()
+    local cacheExpired = refreshRate > 0 and lastUsersRefresh + (1000 * refreshRate) < GetGameTimer()
+
+    if cacheExpired or #usersCache == 0 then
+        RefreshUsersCache(function()
+            TriggerLatentClientEvent("mailbox:setUsers", _source, 50000, usersCache)
+        end)
+        return
     end
-    TriggerClientEvent("mailbox:setUsers", _source, usersCache)
+
+    TriggerLatentClientEvent("mailbox:setUsers", _source, 50000, usersCache)
 end)
 
 RegisterServerEvent("mailbox:updateMessages")
@@ -191,7 +197,7 @@ AddEventHandler("mailbox:updateMessages", function(data)
     end
 end)
 
-function RefreshUsersCache()
+function RefreshUsersCache(callback)
     exports.ghmattimysql:execute( "SELECT identifier as steam, firstname, lastname FROM characters;",
     {}, function (result)
         --[[users: Array<{
@@ -200,14 +206,16 @@ function RefreshUsersCache()
                      lastname
                      }
                      >--]]
-        usersCache = result
+        usersCache = result or {}
         table.sort(usersCache, function(a, b)
             local aName = a.firstname .. " " .. a.lastname
             local bName = b.firstname .. " " .. b.lastname
             return aName:upper() < bName:upper()
         end)
         lastUsersRefresh = GetGameTimer()
-    end)
 
-    
+        if callback then
+            callback()
+        end
+    end)
 end
