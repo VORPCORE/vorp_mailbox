@@ -3,6 +3,8 @@ local mailboxOpened = false
 local messageCache = {}
 local canRefreshMessage = true
 local ready = false
+local usersLoaded = false
+local usersLoading = false
 local postmen = {}
 local blips = {}
 
@@ -15,7 +17,6 @@ AddEventHandler('onClientResourceStart', function(resourceName)
         :gsub("%$2", Config.keyToOpenBroadcast)
 
     SendNUIMessage({ action = "set_language", language = json.encode(Locales[Config.locale]) })
-    TriggerServerEvent("mailbox:getUsers")
     TriggerServerEvent("mailbox:getMessages")
 
     ready = true
@@ -49,6 +50,8 @@ end)
 
 RegisterNetEvent('mailbox:setUsers')
 AddEventHandler('mailbox:setUsers', function(payload)
+    usersLoaded = true
+    usersLoading = false
     SendNUIMessage({ action = "set_users", users = json.encode(payload) })
 end)
 
@@ -90,6 +93,11 @@ function OpenUI(broadcastMode)
     mailboxOpened = true
 
     if not broadcastMode then
+        if not usersLoaded and not usersLoading then
+            usersLoading = true
+            TriggerServerEvent("mailbox:getUsers")
+        end
+
         if canRefreshMessage then
             TriggerServerEvent("mailbox:getMessages")
         end
